@@ -1,0 +1,29 @@
+CS 2200 Fall 2025
+Homework 2
+
+Name:
+GT Username:
+GTID:
+Section: 
+
+==========================================
+Question 1
+------------------------------------------
+// TODO: Answer question 1 from the HW pdf
+
+lea $ra, NEXT
+BEQ $zero, $zero, <target>
+NEXT
+
+JALR does two things. First it sets $ra to the incremented program counter. the label NEXT is on the line 
+immedietly following my JALR replacement, so it represents the incremented PC and will function the same. 
+JALR's next functionality is to set PC to some address <target>, which can be accomplished by using BEQ with
+a truthy comparison.
+
+==========================================
+Question 2
+------------------------------------------
+The division of responsiblity saves memory accesses. The caller is able to assume that the s registers are untouched,
+therefore the caller does not have to waste memory ops on saving and restoring the s registers. Similarly, the t registers
+can be assumed to be untouched by the callee, which also saves operations. If the caller needs to use the t registers, or the 
+callee needs to use the s registers, then they can optionally choose to use them by handling the saving/restoration. 
