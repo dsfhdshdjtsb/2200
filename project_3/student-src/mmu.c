@@ -61,7 +61,7 @@ uint8_t mem_access(vaddr_t address, char access, uint8_t data) {
 
     paddr_t paddr = get_physical_address(entry->pfn, offset);
 
-    entry->referenced = 1;
+    entry-> referenced = 1;
 
     //frame_table[entry->pfn].ref_count |= 0x80;
 

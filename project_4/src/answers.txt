@@ -1,0 +1,40 @@
+CS 2200 Project 4
+
+Name: Nicholas Suh 
+GTID: 903901919 
+GT_Email: nsuh6@gatech.edu
+Section: A02
+
+==============================================
+
+___________________________
+Problem-1 (FCFS Scheduler)
+---------------------------
+There is a nonlinear relationship between the number of CPUs and average execution time. There may be a few reasons why FCFS does not scale linearly.
+For one, FCFS is subject to the convoy effect, where a long running job slows down the entire program, as the process must first complete the entire job 
+before moving onto others. Additionally there could be more overhead from having to perform context switches and managing different cpus, which increases 
+with the number of cpus.
+
+________________________
+Problem-2 (Round-Robin)
+------------------------
+There seems to be a rough positive correlation between time spent waiting and timeslice length. In a real OS, a smaller timeslice length 
+probably is not as good due to larger overhead from performing context swithces. Context switches in our simulator are not as penalizing as 
+context switches in a real OS, so a round robin with a small timeslice could lead to higher execution times due to context switches that take much
+longer than this simulation.
+
+________________________________
+Problem-3 (Preemptive Priority)
+--------------------------------
+Aging solves starvation by increasing the priority of items in the ready queue based on their arrival time. By doing this, older jobs 
+eventually gain high enough priority to be run, which prevents old, low priority jobs from never being run.
+
+___________________________________________
+Problem-4 (The Priority Inversion Problem)
+-------------------------------------------
+I would modify each pcb to store the base priority (which is what would normally be assigned to priority) and also an effective priority. Each pcb 
+will also have an array of pointers to other pcbs that depend on it. On enqueue, if any of the entries in the ready queue are in said array, 
+then the effective priority of said entries will be added to the base priority of the new pcb to calculate the new pcb's effective priority. The queue 
+should be ordered by effective priority. In more natural english, each process has a priority thats determined by its own "base" priority, as well as 
+the sum of the priorities from dependent processes. With this method, processes that have many dependents are correctly prioritized, as these 
+processes must be finished first before working on the dependent processes. 
